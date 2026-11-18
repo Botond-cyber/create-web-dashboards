@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.lixyn.webdashboards.CreateWebDashboards;
+import com.lixyn.webdashboards.core.DisplayUpdate;
+import com.lixyn.webdashboards.mc.ServerEvents;
 import com.simibubi.create.api.behaviour.display.DisplayTarget;
 import com.simibubi.create.content.redstone.displayLink.DisplayLinkContext;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
@@ -29,6 +31,13 @@ public class ConsoleDisplayTarget extends DisplayTarget {
                 context.getSourcePos().toShortString(),
                 line + 1,
                 lines);
+
+        ServerEvents.publish(new DisplayUpdate(
+                context.getTargetPos().toShortString(),
+                context.level().dimension().location().toString(),
+                line + 1,
+                lines,
+                System.currentTimeMillis()));
     }
 
     @Override

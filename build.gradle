@@ -122,6 +122,10 @@ dependencies {
     implementation("org.java-websocket:Java-WebSocket:1.6.0") {
         exclude group: 'org.slf4j'
     }
+    // Dev runs only: puts the library on the game's module layer so FML can load it.
+    additionalRuntimeClasspath("org.java-websocket:Java-WebSocket:1.6.0") {
+        exclude group: 'org.slf4j'
+    }
     jarJar("org.java-websocket:Java-WebSocket") {
         version { strictly '[1.6.0,1.7.0)'; prefer '1.6.0' }
         exclude group: 'org.slf4j'
