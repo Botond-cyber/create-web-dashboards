@@ -2,6 +2,8 @@ package com.lixyn.webdashboards;
 
 import org.slf4j.Logger;
 
+import com.lixyn.webdashboards.registry.ModRegistry;
+
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
@@ -19,5 +21,6 @@ public class CreateWebDashboards {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public CreateWebDashboards(IEventBus modEventBus, ModContainer modContainer) {
+        ModRegistry.register(modEventBus);
     }
 }

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "create_web_dashboards:block/console_display" }
+  }
+}

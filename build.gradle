@@ -116,6 +116,16 @@ configurations {
 }
 
 dependencies {
+    // Java-WebSocket: compile against it and bundle it into the mod jar with Jar-in-Jar.
+    // slf4j is excluded because Minecraft already provides it (a different version would conflict).
+    // The jarJar range lets NeoForge pick a compatible version if another mod also bundles it.
+    implementation("org.java-websocket:Java-WebSocket:1.6.0") {
+        exclude group: 'org.slf4j'
+    }
+    jarJar("org.java-websocket:Java-WebSocket") {
+        version { strictly '[1.6.0,1.7.0)'; prefer '1.6.0' }
+        exclude group: 'org.slf4j'
+    }
     implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
     compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
